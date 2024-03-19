@@ -26,6 +26,7 @@ public class Member {
     protected Member() {}
 
     public Long getId() {
+
         return id;
     }
 
