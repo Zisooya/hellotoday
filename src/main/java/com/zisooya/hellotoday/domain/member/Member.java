@@ -9,7 +9,6 @@ public class Member {
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id = null;
 
-    @Column(nullable = false)
     private Long teamId = null;
 
     @Column(nullable = false, length = 255)
@@ -18,12 +17,20 @@ public class Member {
     @Column(length = 25)
     private String role;
 
-    private String birthDay;
+    private String birthday;
 
     @Column(nullable = false)
     private String workStartDate;
 
     protected Member() {}
+
+
+    public Member(String name, String role, String workStartDate, String birthday) {
+        this.name = name;
+        this.role = role;
+        this.workStartDate = workStartDate;
+        this.birthday = birthday;
+    }
 
     public Long getId() {
 
@@ -42,8 +49,8 @@ public class Member {
         return role;
     }
 
-    public String getBirthDay() {
-        return birthDay;
+    public String getBirthday() {
+        return birthday;
     }
 
     public String getWorkStartDate() {
