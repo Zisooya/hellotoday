@@ -1,6 +1,10 @@
 package com.zisooya.hellotoday.domain.team;
 
+import com.zisooya.hellotoday.domain.member.Member;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Team {
@@ -11,6 +15,9 @@ public class Team {
 
     @Column(nullable = false, length = 25)
     private String name;
+
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<Member>();
 
     protected Team() {
     }
@@ -30,4 +37,7 @@ public class Team {
         return name;
     }
 
+    public List<Member> getMembers() {
+        return members;
+    }
 }

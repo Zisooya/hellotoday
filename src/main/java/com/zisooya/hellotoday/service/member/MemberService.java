@@ -11,13 +11,22 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
+
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
     @Transactional
     public void saveMember(MemberCreateRequest request){
-        System.out.println("birth: " + request.getBirthday());
         memberRepository.save(new Member(request.getName(), request.getRole(), request.getWorkStartDate(), request.getBirthday()));
+    }
+
+    @Transactional
+    public String getManagerNameByTeamId(Long teamId) {
+        Member member = memberRepository.findByTeamId(teamId)
+                //Id에 해당하는 데이터가 존재하지 않는다면 예외 처리
+                .orElseThrow(IllegalArgumentException::new);
+
+        return member.getName();
     }
 }

@@ -1,5 +1,6 @@
 package com.zisooya.hellotoday.domain.member;
 
+import com.zisooya.hellotoday.domain.team.Team;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,8 +9,6 @@ public class Member {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     private Long id = null;
-
-    private Long teamId = null;
 
     @Column(nullable = false, length = 255)
     private String name;
@@ -21,6 +20,10 @@ public class Member {
 
     @Column(nullable = false)
     private String workStartDate;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team team;
 
     protected Member() {}
 
@@ -35,10 +38,6 @@ public class Member {
     public Long getId() {
 
         return id;
-    }
-
-    public Long getTeamId() {
-        return teamId;
     }
 
     public String getName() {
