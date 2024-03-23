@@ -60,10 +60,7 @@ public class TeamService {
                 }
             }
 
-            TeamResponse teamInfo = new TeamResponse(team.getId(), team.getName(), manager, memberCount);
-            response.add(teamInfo);
-
-            System.out.println("--------------------------------"); // 각 팀 사이에 빈 줄 추가
+            response.add(new TeamResponse(team.getId(), team.getName(), manager, memberCount));
         }
 
         return response;
