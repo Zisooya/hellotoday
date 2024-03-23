@@ -21,5 +21,4 @@ public class MemberController {
         memberService.saveMember(request);
     }
 
-
 }

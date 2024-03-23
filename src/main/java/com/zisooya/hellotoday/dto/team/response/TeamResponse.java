@@ -1,7 +1,5 @@
 package com.zisooya.hellotoday.dto.team.response;
 
-import com.zisooya.hellotoday.service.member.MemberService;
-
 public class TeamResponse {
 
     private Long id;            // 팀 ID

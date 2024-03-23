@@ -14,22 +14,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TeamService {
 
     private final TeamRepository teamRepository;
 
-    public TeamService(TeamRepository teamRepository) {
-        this.teamRepository = teamRepository;
-    }
-
     @PersistenceContext
     EntityManager em;
 
     @PersistenceUnit
     EntityManagerFactory emf;
+
+    public TeamService(TeamRepository teamRepository) {
+        this.teamRepository = teamRepository;
+    }
 
     @Transactional
     public void saveTeam(TeamCreatRequest request) {
@@ -54,7 +53,6 @@ public class TeamService {
             List<Member> members = team.getMembers();
 
             for (Member member : members) {
-
                 memberCount++;
 
                 if(member.getRole().equals("MANAGER")){
@@ -63,10 +61,6 @@ public class TeamService {
             }
 
             TeamResponse teamInfo = new TeamResponse(team.getId(), team.getName(), manager, memberCount);
-            System.out.println("팀 ID : " + teamInfo.getId());
-            System.out.println("팀 이름 : " + teamInfo.getName());
-            System.out.println("팀 매니저 : " + teamInfo.getManager());
-            System.out.println("팀 인원수 : " + teamInfo.getMemberCount());
             response.add(teamInfo);
 
             System.out.println("--------------------------------"); // 각 팀 사이에 빈 줄 추가

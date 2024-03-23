@@ -7,8 +7,9 @@ import jakarta.persistence.*;
 public class Member {
 
     @Id
-    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
+
 
     @Column(nullable = false, length = 255)
     private String name;
@@ -25,10 +26,12 @@ public class Member {
     @JoinColumn(name = "team_id")
     private Team team;
 
-    protected Member() {}
+    protected Member() {
+    }
 
 
-    public Member(String name, String role, String workStartDate, String birthday) {
+    public Member(Team team, String name, String role, String workStartDate, String birthday) {
+        this.team = team;
         this.name = name;
         this.role = role;
         this.workStartDate = workStartDate;
@@ -36,7 +39,6 @@ public class Member {
     }
 
     public Long getId() {
-
         return id;
     }
 
@@ -54,5 +56,9 @@ public class Member {
 
     public String getWorkStartDate() {
         return workStartDate;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 }
